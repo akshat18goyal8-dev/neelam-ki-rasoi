@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Neelam ki Rasoi – Breakfast & Lunch</title>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;800&family=Hind:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#F7F9F3;--surf:#fff;--ink:#1d2a22;--mut:#5d6b62;--line:#dce3d6;--head:#1F4D3A;--on-head:#fff;--btn:#1F4D3A;--on-btn:#fff;--gold:#F2B01E;--on-gold:#2a1f00;--red:#C8372D;--ok:#2e7d4f;color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#111812;--surf:#19231c;--ink:#eef2ea;--mut:#a3b1a7;--line:#2b3a30;--head:#16382a;--btn:#3f9a70;--on-btn:#fff;--red:#ef6b60;--ok:#5ac28a;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#111812;--surf:#19231c;--ink:#eef2ea;--mut:#a3b1a7;--line:#2b3a30;--head:#16382a;--btn:#3f9a70;--on-btn:#fff;--red:#ef6b60;--ok:#5ac28a;color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:Hind,system-ui,sans-serif;font-size:16px;line-height:1.5}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--head);z-index:10}
+h1,h2,h3{font-family:"Baloo 2",system-ui,sans-serif;margin:0;line-height:1.15}
+button{font:inherit;cursor:pointer}
+button:focus-visible,input:focus-visible,textarea:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:9;background:var(--head);color:var(--on-head)}
+.bar{max-width:980px;margin:auto;padding:12px 16px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.brand h1{font-size:26px;font-weight:800}
+.brand small{opacity:.8;display:block;font-size:13px}
+.nav{display:flex;gap:6px}
+.nav button{background:transparent;border:1.5px solid rgba(255,255,255,.4);color:var(--on-head);border-radius:999px;padding:6px 14px;font-weight:500}
+.nav button.on{background:var(--gold);color:var(--on-gold);border-color:var(--gold)}
+main{max-width:980px;margin:auto;padding:16px 16px 120px}
+.tabs{display:flex;gap:8px;overflow-x:auto;padding-bottom:4px;margin-bottom:8px}
+.tabs button{flex:none;border:1.5px solid var(--line);background:var(--surf);color:var(--ink);border-radius:999px;padding:8px 18px;font-weight:600}
+.tabs button.on{background:var(--btn);color:var(--on-btn);border-color:var(--btn)}
+.hours{color:var(--mut);margin:4px 0 12px}
+.list{display:grid;grid-template-columns:1fr;gap:0 32px}
+@media(min-width:760px){.list{grid-template-columns:1fr 1fr}}
+.item{display:flex;gap:12px;justify-content:space-between;align-items:center;padding:14px 0;border-bottom:1px solid var(--line)}
+.item h3{font-size:19px;font-weight:600}
+.item p{margin:2px 0 4px;color:var(--mut);font-size:14px}
+.price{font-weight:600}
+.dot{display:inline-block;width:12px;height:12px;border:2px solid var(--ok);border-radius:3px;position:relative;margin-right:6px;vertical-align:-1px}
+.dot::after{content:"";position:absolute;inset:2px;border-radius:50%;background:var(--ok)}
+.dot.nv{border-color:var(--red)}.dot.nv::after{background:var(--red)}
+.tag{background:var(--gold);color:var(--on-gold);font-size:12px;font-weight:600;border-radius:4px;padding:1px 7px;margin-left:6px}
+.add{background:var(--surf);color:var(--btn);border:1.5px solid var(--btn);border-radius:8px;padding:6px 20px;font-weight:600;min-width:88px}
+.qty{display:inline-flex;align-items:center;background:var(--btn);color:var(--on-btn);border-radius:8px}
+.qty button{background:none;border:0;color:inherit;width:34px;height:34px;font-size:20px}
+.qty span{min-width:22px;text-align:center;font-weight:600}
+.cartbar{position:fixed;left:0;right:0;bottom:0;z-index:8;background:var(--btn);color:var(--on-btn);padding:12px 16px calc(12px + env(safe-area-inset-bottom,0px))}
+.cartbar button{display:flex;width:100%;max-width:980px;margin:auto;justify-content:space-between;background:none;border:0;color:inherit;font-weight:600;font-size:17px}
+.shade{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:20;display:flex;align-items:flex-end;justify-content:center}
+.sheet{background:var(--surf);width:100%;max-width:520px;max-height:92%;overflow:auto;border-radius:16px 16px 0 0;padding:18px 16px calc(18px + env(safe-area-inset-bottom,0px))}
+@media(min-width:760px){.shade{align-items:center}.sheet{border-radius:16px}}
+.sheet h2{font-size:24px;margin-bottom:8px}
+.row{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:8px 0;border-bottom:1px solid var(--line)}
+.tot{font-weight:600;font-size:18px;border-bottom:0}
+label{display:block;font-weight:500;margin-top:10px}
+input,textarea{width:100%;font:inherit;padding:10px;border:1.5px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink)}
+.rule{background:color-mix(in srgb,var(--gold) 25%,transparent);border-left:4px solid var(--gold);padding:8px 12px;margin:12px 0;font-size:14px;border-radius:4px}
+.go{background:var(--btn);color:var(--on-btn);border:0;border-radius:10px;padding:13px;width:100%;font-weight:600;font-size:17px;margin-top:8px}
+.ghost{background:none;border:1.5px solid var(--line);color:var(--ink);border-radius:8px;padding:8px 14px}
+.danger{background:var(--red);color:#fff;border:0;border-radius:8px;padding:9px 16px;font-weight:600}
+.err{color:var(--red);font-size:14px;margin-top:6px}
+.order{border:1.5px solid var(--line);background:var(--surf);border-radius:12px;padding:16px;margin-bottom:16px}
+.order h2{font-size:22px}
+.steps{display:flex;gap:4px;margin:14px 0}
+.steps div{flex:1;text-align:center;font-size:12.5px;color:var(--mut)}
+.steps div::before{content:"";display:block;height:6px;border-radius:3px;background:var(--line);margin-bottom:5px}
+.steps div.done{color:var(--ink);font-weight:600}.steps div.done::before{background:var(--ok)}
+.cx{margin-top:10px;padding:10px 12px;border-radius:8px;background:var(--bg)}
+.cx.no{color:var(--red)}
+.demo{margin-top:12px;border:1.5px dashed var(--line);border-radius:8px;padding:10px;font-size:13px;color:var(--mut)}
+.demo button{margin:6px 6px 0 0;font-size:13px;padding:5px 10px}
+.empty{text-align:center;color:var(--mut);padding:48px 0}
+@media(prefers-reduced-motion:no-preference){.sheet{animation:up .2s ease-out}@keyframes up{from{transform:translateY(24px);opacity:.6}}}
+</style>
+</head>
+<body>
+<header><div class="bar">
+  <div class="brand"><h1>Neelam ki Rasoi</h1><small>Ghar jaisa shuddh shakahari khana</small></div>
+  <nav class="nav"><button id="nMenu">Menu</button><button id="nOrder">My Order</button></nav>
+</div></header>
+<main id="app"></main>
+<div id="cartbar"></div>
+<div id="sheetHost"></div>
+<script>
+var MENU=[
+ {id:1,n:"Poha with Jalebi",d:"Soft poha, sev, lemon, 2 hot jalebi",p:70,v:1,c:"breakfast",s:1},
+ {id:2,n:"Aloo Paratha + Curd",d:"2 parathas, butter, fresh curd, pickle",p:90,v:1,c:"breakfast"},
+ {id:3,n:"Idli Sambar",d:"3 idlis, sambar, coconut chutney",p:70,v:1,c:"breakfast"},
+ {id:4,n:"Puri Sabzi",d:"4 puris with spicy aloo sabzi",p:80,v:1,c:"breakfast"},
+ {id:5,n:"Besan Chilla + Chutney",d:"2 masala besan chillas, green chutney",p:70,v:1,c:"breakfast"},
+ {id:6,n:"Rajma Chawal",d:"Slow-cooked rajma, steamed rice, salad",p:110,v:1,c:"lunch",s:1},
+ {id:7,n:"Dal Chawal Thali",d:"Dal tadka, rice, sabzi, 2 roti, salad",p:120,v:1,c:"lunch"},
+ {id:8,n:"Paneer Thali",d:"Paneer curry, dal, rice, 3 roti, raita",p:160,v:1,c:"lunch"},
+ {id:9,n:"Kadhi Chawal",d:"Pakoda kadhi with jeera rice",p:100,v:1,c:"lunch"},
+ {id:10,n:"Chole Chawal",d:"Punjabi-style chole, jeera rice, onion salad",p:110,v:1,c:"lunch"}
+];
+var STEPS=["Placed","Preparing","Out for delivery","Delivered"],WIN=30*60*1000;
+var tab="special",view="menu",cart={},orders=[],sheet=false,form={name:"",phone:"",addr:""},err="",askCancel=null;
+function esc(s){return String(s).replace(/[&<>"']/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]})}
+function $(s){return document.querySelector(s)}
+try{orders=JSON.parse(localStorage.getItem("mr_orders")||"[]")}catch(e){orders=[]}
+function save(){try{localStorage.setItem("mr_orders",JSON.stringify(orders))}catch(e){}}
+function count(){var n=0;for(var k in cart)n+=cart[k];return n}
+function total(){var t=0;MENU.forEach(function(m){t+=(cart[m.id]||0)*m.p});return t}
+function grab(){var a=$("#fName");if(a){form.name=a.value;form.phone=$("#fPhone").value;form.addr=$("#fAddr").value}}
+function ctl(m){var q=cart[m.id]||0;return q?'<div class="qty"><button data-a="dec" data-id="'+m.id+'" aria-label="Remove one">−</button><span>'+q+'</span><button data-a="inc" data-id="'+m.id+'" aria-label="Add one">+</button></div>':'<button class="add" data-a="inc" data-id="'+m.id+'">Add</button>'}
+function menuHtml(){
+  var items=MENU.filter(function(m){return tab==="special"?m.s:m.c===tab});
+  var hrs={special:"Aaj ke special dishes, sirf aaj ke liye.",breakfast:"Breakfast: 7:00 AM – 11:00 AM",lunch:"Lunch: 12:00 PM – 3:30 PM"}[tab];
+  var h='<div class="tabs" role="tablist">'+[["special","Today’s Special"],["breakfast","Breakfast"],["lunch","Lunch"]].map(function(t){return'<button data-a="tab" data-t="'+t[0]+'" class="'+(tab===t[0]?"on":"")+'">'+t[1]+'</button>'}).join("")+'</div><p class="hours">'+hrs+'</p><div class="list">';
+  items.forEach(function(m){h+='<div class="item"><div><h3><span class="dot '+(m.v?"":"nv")+'"></span>'+m.n+(m.s&&tab!=="special"?'<span class="tag">Special</span>':"")+'</h3><p>'+m.d+'</p><span class="price">₹'+m.p+(tab==="special"?" · "+(m.c==="lunch"?"Lunch":"Breakfast"):"")+'</span></div>'+ctl(m)+'</div>'});
+  return h+'</div>';
+}
+function sheetHtml(){
+  var rows=MENU.filter(function(m){return cart[m.id]}).map(function(m){return'<div class="row"><span>'+m.n+'<br><small>₹'+m.p+' each</small></span><span style="display:flex;gap:10px;align-items:center">'+ctl(m)+'<b>₹'+m.p*cart[m.id]+'</b></span></div>'}).join("");
+  return'<div class="shade" data-a="shade"><div class="sheet" role="dialog" aria-label="Your order"><h2>Aapka order</h2>'+(rows||'<p class="empty">Cart khali hai. Menu se kuch add karein.</p>')+(rows?'<div class="row tot"><span>Total</span><span>₹'+total()+'</span></div>'+
+  '<label for="fName">Naam</label><input id="fName" autocomplete="name" value="'+esc(form.name)+'">'+
+  '<label for="fPhone">Phone number</label><input id="fPhone" inputmode="numeric" maxlength="10" autocomplete="tel" value="'+esc(form.phone)+'">'+
+  '<label for="fAddr">Delivery address</label><textarea id="fAddr" rows="2" autocomplete="street-address">'+esc(form.addr)+'</textarea>'+
+  (err?'<div class="err">'+err+'</div>':"")+
+  '<div class="rule"><b>Cancellation:</b> order ke 30 minute tak cancel kar sakte hain. Order “Out for delivery” hone ke baad cancel nahi hoga.</div>'+
+  '<button class="go" data-a="place">Order karein · ₹'+total()+'</button>':"")+
+  '<button class="ghost" style="margin-top:10px;width:100%" data-a="close">Menu par wapas</button></div></div>';
+}
+function mmss(ms){var s=Math.max(0,Math.ceil(ms/1000)),m=Math.floor(s/60);return m+":"+("0"+(s%60)).slice(-2)}
+function orderHtml(){
+  if(!orders.length)return'<div class="empty"><h2>Abhi koi order nahi</h2><p>Menu se order karein, yahan status dikhega.</p></div>';
+  return orders.map(function(o,i){
+    var el=Date.now()+o.skip-o.at,left=WIN-el,out=o.st>=2,can=!o.cx&&!out&&left>0,cx="";
+    if(o.cx)cx='<div class="cx no">Order cancel ho gaya.</div>';
+    else if(o.st>=3)cx='<div class="cx">Delivered. Dhanyavaad!</div>';
+    else if(out)cx='<div class="cx no">Out for delivery. Ab cancel nahi ho sakta.</div>';
+    else if(!can)cx='<div class="cx no">30 minute ka cancellation time khatam. Ab cancel nahi ho sakta.</div>';
+    else cx='<div class="cx">Cancel kar sakte hain: <b>'+mmss(left)+'</b> baaki<br>'+(askCancel===o.id?'<div style="margin-top:8px">Pakka cancel karna hai? <button class="danger" data-a="cxyes" data-o="'+o.id+'">Haan, cancel</button> <button class="ghost" data-a="cxno">Nahi</button></div>':'<button class="danger" style="margin-top:8px" data-a="cxask" data-o="'+o.id+'">Order cancel karein</button>')+'</div>';
+    var items=o.items.map(function(x){return x.q+" × "+esc(x.n)}).join(", ");
+    return'<div class="order"><h2>Order #'+o.id+' · ₹'+o.t+'</h2><p style="color:var(--mut);margin:4px 0">'+items+'<br>'+esc(o.name)+' · '+esc(o.phone)+'<br>'+esc(o.addr)+'</p>'+
+    (o.cx?"":'<div class="steps">'+STEPS.map(function(s,k){return'<div class="'+(k<=o.st?"done":"")+'">'+s+'</div>'}).join("")+'</div>')+cx+
+    (o.cx||o.st>=3?"":'<div class="demo">Demo controls (sirf prototype ke liye)<br><button class="ghost" data-a="next" data-o="'+o.id+'">Next status</button><button class="ghost" data-a="ff" data-o="'+o.id+'">30 minute aage badhao</button></div>')+'</div>'}).join("");
+}
+function render(){
+  grab();
+  $("#nMenu").className=view==="menu"?"on":"";$("#nOrder").className=view==="order"?"on":"";
+  $("#app").innerHTML=view==="menu"?menuHtml():'<h2 style="margin-bottom:12px">My Order</h2>'+orderHtml();
+  var n=count();
+  $("#cartbar").innerHTML=(view==="menu"&&n&&!sheet)?'<div class="cartbar"><button data-a="open"><span>'+n+' item'+(n>1?"s":"")+' · ₹'+total()+'</span><span>Cart dekho ›</span></button></div>':"";
+  $("#sheetHost").innerHTML=sheet?sheetHtml():"";
+}
+function find(id){return orders.filter(function(o){return o.id==id})[0]}
+document.addEventListener("click",function(e){
+  var t=e.target.closest("[data-a]");if(!t)return;var a=t.dataset.a,id=t.dataset.id,o;
+  if(a==="shade"&&e.target!==t)return;
+  if(a==="tab")tab=t.dataset.t;
+  else if(a==="inc")cart[id]=(cart[id]||0)+1;
+  else if(a==="dec"){cart[id]=(cart[id]||0)-1;if(cart[id]<=0)delete cart[id]}
+  else if(a==="open"){sheet=true;err=""}
+  else if(a==="close"||a==="shade"){grab();sheet=false}
+  else if(a==="place"){grab();
+    if(!form.name.trim()||!/^\d{10}$/.test(form.phone.trim())||!form.addr.trim()){err="Naam, 10 digit ka phone number aur address bharein.";}
+    else{var items=MENU.filter(function(m){return cart[m.id]}).map(function(m){return{n:m.n,q:cart[m.id]}});
+      orders.unshift({id:Math.floor(1000+Math.random()*9000),items:items,t:total(),at:Date.now(),skip:0,st:0,cx:0,name:form.name.trim(),phone:form.phone.trim(),addr:form.addr.trim()});
+      save();cart={};sheet=false;err="";view="order"}}
+  else if(a==="cxask")askCancel=+t.dataset.o;
+  else if(a==="cxno")askCancel=null;
+  else if(a==="cxyes"){o=find(t.dataset.o);if(o&&!o.cx&&o.st<2&&Date.now()+o.skip-o.at<WIN){o.cx=1;save()}askCancel=null}
+  else if(a==="next"){o=find(t.dataset.o);if(o&&o.st<3){o.st++;save()}}
+  else if(a==="ff"){o=find(t.dataset.o);if(o){o.skip+=WIN;save()}}
+  render();
+});
+$("#nMenu").onclick=function(){view="menu";render()};
+$("#nOrder").onclick=function(){view="order";sheet=false;render()};
+setInterval(function(){if(view==="order"&&orders.length)render()},1000);
+render();
+</script>
+</body>
+</html>
